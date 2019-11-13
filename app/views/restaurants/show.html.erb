@@ -1,0 +1,30 @@
+<h1>
+  <%= @restaurant.name %>
+  <%= link_to edit_restaurant_path do %>
+    <i class="fas fa-pen"></i>
+  <% end %>
+  <%= link_to restaurant_path(@restaurant), method: :delete, data: { confirm: "Are you sure?" } do %>
+    <i class="far fa-trash-alt"></i>
+  <% end %>
+</h1>
+<h4>Category: <%= @restaurant.category %></h4>
+<br>
+<p>Address: <%= @restaurant.address %></p>
+<p>Phone number: <%= @restaurant.phone_number %></p>
+
+
+<p><%= link_to "Go back", restaurants_path %> - <%= link_to 'Add a review', new_restaurant_review_path(@restaurant) %></p>
+
+
+<% unless @reviews.blank? %>
+  <h2>Reviews</h2>
+
+  <ul>
+    <% @reviews.each do |review| %>
+        <li>
+        <%= review.content %>
+        <%= review.rating %>
+        </li>
+    <% end %>
+  </ul>
+<% end %>
